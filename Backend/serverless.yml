@@ -31,15 +31,7 @@ functions:
 package:
   excludeDevDependencies: true
   patterns:
-    - '!node_modules/**'
-    - 'node_modules/serverless-http/**'
-    - 'node_modules/express/**'
-    - 'node_modules/mongoose/**'
-    - 'node_modules/cors/**'
-    - 'node_modules/helmet/**'
-    - 'node_modules/compression/**'
-    - 'node_modules/morgan/**'
-    - 'node_modules/express-rate-limit/**'
+    - '!node_modules/.cache/**'
     - '!queue*/**'
     - '!.git/**'
     - '!.env'
