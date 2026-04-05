@@ -26,5 +26,7 @@ functions:
 package:
   excludeDevDependencies: true
   patterns:
+    - '!node_modules/.cache/**'
+    - '!node_modules/aws-sdk/**'
     - '!.git/**'
     - '!.env'
