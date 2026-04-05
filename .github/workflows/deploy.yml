@@ -11,27 +11,38 @@ jobs:
 
     steps:
 
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-    - name: Install Serverless
-      run: npm install -g serverless@3
+      - name: Install Serverless
+        run: npm install -g serverless@3
 
-    - name: Install dependencies
-      run: |
-        cd Backend
-        npm install
+      - name: Install dependencies
+        run: |
+          cd Backend
+          npm install
 
-    - name: Deploy
-      run: |
-        cd Backend
-        serverless deploy
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        AWS_REGION: ap-south-1
+      - name: Deploy
+        run: |
+          cd Backend
+          npx serverless deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: ap-south-1
+
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_USER: ${{ secrets.BREVO_USER }}
+          BREVO_PASS: ${{ secrets.BREVO_PASS }}
