@@ -25,12 +25,12 @@ jobs:
       - name: Install dependencies
         run: |
           cd Backend
-          npm install
+          npm install --omit=dev
 
       - name: Deploy
         run: |
           cd Backend
-          npx serverless deploy
+          serverless deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
