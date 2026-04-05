@@ -1,0 +1,23 @@
+service: greps-backend
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - http:
+          path: "/{any+}"
+          method: ANY
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!.git/**'
+    - '!.env'
+
+plugins:
+  - serverless-offline
