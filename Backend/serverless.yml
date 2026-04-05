@@ -1,5 +1,7 @@
 service: greps-backend
 
+frameworkVersion: "3"
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -19,6 +21,9 @@ functions:
   api:
     handler: server.handler
     events:
+      - http:
+          path: /
+          method: ANY
       - http:
           path: /{any+}
           method: ANY
