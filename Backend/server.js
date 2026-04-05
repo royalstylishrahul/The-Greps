@@ -30,8 +30,6 @@ const errorHandler=require("./middleware/error.middleware");
 const app=express();
 
 
-// DATABASE CONNECT
-connectDB();
 
 
 // SECURITY MIDDLEWARE
@@ -104,7 +102,6 @@ app.use("/api/campaigns",campaignRoutes);
 
 app.use("/api/whatsapp",whatsappRoutes);
 
-app.use("/api/whatsapp",whatsappRoutes);
 
 
 // HEALTH CHECK
@@ -129,26 +126,27 @@ message:"Route not found"
 });
 
 
-// GLOBAL ERROR HANDLER (MUST BE LAST)
+// GLOBAL ERROR HANDLER
 app.use(errorHandler);
 
+const serverless = require("serverless-http");
 
-// PORT
-const PORT=process.env.PORT || 5001;
+// DB connect inside handler
+let isDBConnected = false;
 
+const handler = async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
 
-app.listen(
+if(!isDBConnected){
 
-PORT,
+await connectDB();
 
-()=>{
-
-console.log(
-
-`🚀 Server running on http://localhost:${PORT}`
-
-);
+isDBConnected=true;
 
 }
 
-);
+return serverless(app)(event, context);
+
+};
+
+module.exports.handler = handler;

@@ -5,17 +5,19 @@ provider:
   runtime: nodejs18.x
   region: ap-south-1
 
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+
 functions:
   api:
-    handler: index.handler
+    handler: server.handler
     events:
       - http:
-          path: "/{any+}"
+          path: /{any+}
           method: ANY
 
 package:
   patterns:
-    - '!node_modules/**'
     - '!.git/**'
     - '!.env'
 
