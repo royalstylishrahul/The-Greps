@@ -5,13 +5,13 @@ const router=
 express.Router();
 
 const auth=
-require("../middleware/auth.middleware");
+require("../middleware/auth.middleware.js");
 
 const tenant=
 require("../middleware/tenant");
 
 const ctrl=
-require("../controllers/broadcast.controller");
+require("../controllers/broadcast.controller.js");
 
 router.post(
 

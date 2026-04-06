@@ -7,42 +7,55 @@ on:
 
 jobs:
   deploy:
+
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
 
-      - name: Install Serverless
-        run: npm install -g serverless@3
+    - uses: aws-actions/configure-aws-credentials@v4
 
-      - name: Install dependencies
-        run: |
-          cd Backend
-          npm install --omit=dev
+      with:
 
-      - name: Deploy
-        run: |
-          cd Backend
-          serverless deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-          AWS_REGION: ap-south-1
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
 
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
 
-          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        aws-region: ap-south-1
 
-          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
-          BREVO_USER: ${{ secrets.BREVO_USER }}
-          BREVO_PASS: ${{ secrets.BREVO_PASS }}
+
+    - uses: aws-actions/amazon-ecr-login@v2
+
+
+    - name: Build Docker image
+
+      run: |
+
+        docker build -t greps-backend ./Backend
+
+
+    - name: Tag image
+
+      run: |
+
+        docker tag greps-backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
+
+
+    - name: Push image
+
+      run: |
+
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
+
+
+    - name: Update Lambda
+
+      run: |
+
+        aws lambda update-function-code \
+
+        --function-name greps-backend \
+
+        --image-uri ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest

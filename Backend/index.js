@@ -1,4 +1,4 @@
-const serverless = require("serverless-http")
+const serverless = require("serverless-http");
 require("dotenv").config();
 
 const express = require("express"); 
@@ -10,11 +10,13 @@ const app = express();
 
 // CORS
 app.use(cors({
- origin:[
+origin:[
 "http://localhost:5173",
 "https://main.d1jv16iunam0qq.amplifyapp.com"
 ],
- credentials:true
+credentials:true,
+methods:["GET","POST","PUT","DELETE"],
+allowedHeaders:["Content-Type","Authorization"]
 }));
 
 
@@ -28,27 +30,17 @@ extended:true
 
 
 // DB cache
-let isConnected;
+let isConnected=false;
 
 const connectDatabase = async ()=>{
 
- if(isConnected) return;
+if(isConnected) return;
 
- await connectDB();
+await connectDB();
 
-isConnected = true;
+isConnected=true;
 
 };
-
-
-// DB middleware (IMPORTANT)
-app.use(async(req,res,next)=>{
-
- await connectDatabase();
-
- next();
-
-});
 
 
 // uploads local only
@@ -137,16 +129,20 @@ message:err.message
 });
 
 
-// Lambda handler
-module.exports.handler = serverless(app,{
 
-request:(req,event,context)=>{
+
+// Lambda handler (IMPORTANT CHANGE)
+module.exports.handler = async(event,context)=>{
 
 context.callbackWaitsForEmptyEventLoop=false;
 
-}
+await connectDatabase();
 
-});
+const handler=serverless(app);
+
+return handler(event,context);
+
+};
 
 
 // local run
