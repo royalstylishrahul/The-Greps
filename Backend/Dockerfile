@@ -13,4 +13,4 @@ RUN npm install --omit=dev
 COPY . .
 
 # Lambda handler
-CMD ["server.handler"]
+CMD ["index.handler"]
