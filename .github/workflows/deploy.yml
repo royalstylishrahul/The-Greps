@@ -50,4 +50,12 @@ jobs:
         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
 
 
-    
+    - name: Update Lambda
+
+      run: |
+
+        aws lambda update-function-code \
+
+        --function-name greps-backend \
+
+        --image-uri ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
