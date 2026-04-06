@@ -12,7 +12,7 @@ function reset(){
   return;
  }
 
- API.post("/otp/send-otp",{
+ API.post("/otp/send",{
  email
 })
 
@@ -45,7 +45,7 @@ backdropFilter:"blur(15px)",
 boxShadow:"0 10px 30px rgba(0,0,0,0.2)"
 }}>
 
-<h2>Forgot Password</h2>
+<h2>Forgot Password OTP</h2>
 
 <input
 placeholder="Enter your email"

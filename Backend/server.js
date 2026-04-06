@@ -29,6 +29,7 @@ const app=express();
 
 // SECURITY
 app.use(helmet());
+
 const allowedOrigins = [
 process.env.FRONTEND_URL,
 process.env.AMPLIFY_URL,
@@ -36,28 +37,23 @@ process.env.AMPLIFY_URL,
 "http://127.0.0.1:5173"
 ];
 
-app.options('*', cors());
+// IMPORTANT Lambda CORS fix
+app.use((req,res,next)=>{
+res.header("Access-Control-Allow-Origin","*");
+res.header("Access-Control-Allow-Headers","*");
+res.header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,OPTIONS");
+next();
+});
 
 app.use(cors({
-origin: function(origin, callback){
-
-// allow requests with no origin (mobile apps, postman)
-if(!origin) return callback(null,true);
-
-if(allowedOrigins.includes(origin)){
-return callback(null,true);
-}
-
-return callback(null,false);
-
-},
+origin:true,
+credentials:true,
 methods:["GET","POST","PUT","DELETE","OPTIONS"],
 allowedHeaders:[
 "Content-Type",
 "Authorization",
 "storeId"
-],
-credentials:true
+]
 }));
 
 
