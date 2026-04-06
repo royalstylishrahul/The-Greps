@@ -13,20 +13,11 @@ const app = express();
 
 // CORS
 app.use(cors({
- origin:[
-  "http://localhost:5173",
-  "https://main.d1jv16iunam0qq.amplifyapp.com",
-  /^https:\/\/.*\.amplifyapp\.com$/
- ],
- credentials:true,
- methods:["GET","POST","PUT","DELETE","OPTIONS"],
- allowedHeaders:["Content-Type","Authorization","storeId","X-Requested-With"]
+ origin:true,
+ credentials:true
 }));
 
-app.options('*', cors());
-app.use((req,res,next)=>{
-
- res.header("Access-Control-Allow-Origin","*");
+app.options("*", cors());
 
  res.header(
   "Access-Control-Allow-Headers",
@@ -44,7 +35,7 @@ app.use((req,res,next)=>{
 
  next();
 
-});
+
 
 // Body parser
 app.use(express.json({limit:"10mb"}));
@@ -156,7 +147,7 @@ const handler = serverless(app,{
   basePath:'/greps-backend'
 });
 
-module.exports.handler = async(event,context)=>{
+
 
  context.callbackWaitsForEmptyEventLoop=false;
 
@@ -164,7 +155,7 @@ module.exports.handler = async(event,context)=>{
 
  return handler(event,context);
 
-};
+
 
 
 
