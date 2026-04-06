@@ -10,7 +10,10 @@ import {useLocation} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useToast} from "../../App";
 
-const API_BASE="http://localhost:5001/api";
+const API_BASE =
+process.env.NODE_ENV === "development"
+? "http://localhost:5001/api"
+: "https://zwkkmn5355.execute-api.ap-south-1.amazonaws.com/default/greps-backend/api";
 
 const PAGE_SIZE=8;
 

@@ -12,15 +12,16 @@ const app = express();
 
 // CORS
 app.use(cors({
-origin:[
-"http://localhost:5173",
-"https://main.d1jv16iunam0qq.amplifyapp.com"
-],
-credentials:true,
-methods:["GET","POST","PUT","DELETE"],
-allowedHeaders:["Content-Type","Authorization"]
+ origin:[
+  "http://localhost:5173",
+  "https://main.d1jv16iunam0qq.amplifyapp.com"
+ ],
+ credentials:true,
+ methods:["GET","POST","PUT","DELETE","OPTIONS"],
+ allowedHeaders:["Content-Type","Authorization"]
 }));
 
+app.options('*', cors());
 
 // Body parser
 app.use(express.json({limit:"10mb"}));
