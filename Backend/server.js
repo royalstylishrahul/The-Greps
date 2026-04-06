@@ -29,11 +29,28 @@ const app=express();
 
 // SECURITY
 app.use(helmet());
-app.use(cors({
-origin:[
+const allowedOrigins = [
+process.env.FRONTEND_URL,
+process.env.AMPLIFY_URL,
 "http://localhost:5173",
 "http://127.0.0.1:5173"
-],
+];
+
+app.options('*', cors());
+
+app.use(cors({
+origin: function(origin, callback){
+
+// allow requests with no origin (mobile apps, postman)
+if(!origin) return callback(null,true);
+
+if(allowedOrigins.includes(origin)){
+return callback(null,true);
+}
+
+return callback(null,false);
+
+},
 methods:["GET","POST","PUT","DELETE","OPTIONS"],
 allowedHeaders:[
 "Content-Type",
@@ -43,7 +60,6 @@ allowedHeaders:[
 credentials:true
 }));
 
-app.options("*",cors());
 
 app.use(compression());
 app.use(morgan("dev"));
