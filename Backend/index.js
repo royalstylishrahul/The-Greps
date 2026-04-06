@@ -126,9 +126,7 @@ message:err.message
 });
 
 });
-const handler = serverless(app,{
-  basePath:'/default'
-});
+const handler = serverless(app);
 
 
 
