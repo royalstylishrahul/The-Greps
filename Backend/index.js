@@ -128,18 +128,15 @@ message:err.message
 });
 
 });
-const handler = serverless(app);
+const handler = serverless(app,{
+  basePath:'/greps-backend'
+});
 
 module.exports.handler = async(event,context)=>{
 
  context.callbackWaitsForEmptyEventLoop=false;
 
  await connectDatabase();
-
- // remove API Gateway prefix
- if(event.path){
-   event.path = event.path.replace('/greps-backend','');
- }
 
  return handler(event,context);
 
