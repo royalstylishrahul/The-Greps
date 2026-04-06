@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../services/api";
 import { useState } from "react";
 
 export default function Forgot({ setPage }) {
@@ -12,17 +12,17 @@ function reset(){
   return;
  }
 
- axios.post("http://localhost:5001/api/auth/forgot",{
-  email
- })
+ API.post("/auth/forgot",{
+ email
+})
 
  .then(res=>{
   alert(res.data.message);
  })
 
  .catch(err=>{
-  alert("Error");
- });
+  alert(err.response?.data?.message || "Error");
+});
 
 }
 
