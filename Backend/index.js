@@ -49,12 +49,6 @@ app.use("/uploads",express.static("uploads"));
 
 }
 
-app.use((req,res,next)=>{
-  if(req.url.startsWith("/default/")){
-    req.url=req.url.replace("/default","");
-  }
-  next();
-});
 
 // Routes
 const authRoutes = require("./routes/auth.routes");
@@ -132,7 +126,9 @@ message:err.message
 });
 
 });
-const handler = serverless(app);
+const handler = serverless(app,{
+  basePath:'/default'
+});
 
 
 
