@@ -321,7 +321,7 @@ if(mode==="signup" || mode==="forgot"){
 
 try{
 
-await API.post("/otp/send-otp",{
+await API.post("/auth/send-otp",{
  email:form.email,
  phone: form.whatsapp || "9999999999",
  purpose: mode
@@ -1091,4 +1091,3 @@ mode === "signup"
     </>
   );  
 }
-

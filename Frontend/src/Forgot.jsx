@@ -12,7 +12,7 @@ function reset(){
   return;
  }
 
- API.post("/otp/send",{
+ API.post("/auth/send-otp",{
  email
 })
 
