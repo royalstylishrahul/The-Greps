@@ -162,17 +162,14 @@ return;
 try{
 
 const response =
-await API.post("/auth/verify-otp",{
-
+await API.post("/auth/reset-password",{
 email:form.email,
 otp:otp,
 storeName:form.storeName,
 ownerName:form.ownerName,
 phone: mode==="signup" ? form.whatsapp : "9999999999",
 password:form.password,
-
 purpose: mode   
-
 });
 
 if(response.data.success){
@@ -319,23 +316,19 @@ password:""
 setAuthError("");
 
 if(!validate()) return;
+
 if(mode==="signup" || mode==="forgot"){
 
 try{
 
 await API.post("/auth/send-otp",{
-
 email:form.email,
-phone: mode==="signup" ? form.whatsapp : form.whatsapp || "9999999999",
-
+phone: form.whatsapp || "9999999999",
 purpose: mode  
-
 });
 
 setOtpSent(true);
-
 setOtpTimer(30);
-
 setCanResend(false);
 
 }catch(error){
@@ -351,8 +344,7 @@ if(mode==="reset"){
 
 try{
 
-await API.post("/auth/reset-password",{
-
+await API.post("/auth/verify-otp",{
 email:form.email,
 password:form.password
 

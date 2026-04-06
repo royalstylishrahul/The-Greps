@@ -1,3 +1,9 @@
+if (typeof global !== "undefined" && typeof global.CustomEvent === "undefined") {
+  global.CustomEvent = function CustomEvent() {
+    return null;
+  };
+}
+
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { BrowserRouter } from "react-router-dom";
 import { StrictMode } from 'react'
