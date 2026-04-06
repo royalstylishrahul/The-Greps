@@ -162,7 +162,7 @@ return;
 try{
 
 const response =
-await API.post("/auth/reset-password",{
+await API.post("/api/auth/reset-password",{
 email:form.email,
 otp:otp,
 storeName:form.storeName,
@@ -321,7 +321,7 @@ if(mode==="signup" || mode==="forgot"){
 
 try{
 
-await API.post("/auth/send-otp",{
+await API.post("/api/auth/send-otp",{
  email:form.email,
  phone: form.whatsapp || "9999999999",
  purpose: mode
@@ -344,7 +344,7 @@ if(mode==="reset"){
 
 try{
 
-await API.post("/auth/verify-otp",{
+await API.post("/api/auth/verify-otp",{
 email:form.email,
 password:form.password
 
@@ -386,8 +386,8 @@ password: form.password
 
 const endpoint =
 mode === "signup"
-? "/auth/signup"
-: "/auth/login";
+"/api/auth/signup"
+"/api/auth/login"
 
 const response =
 await API.post(endpoint,data);
