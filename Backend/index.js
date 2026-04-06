@@ -126,7 +126,9 @@ message:err.message
 });
 
 });
-const handler = serverless(app);
+const handler = serverless(app,{
+  basePath:'/greps-backend'
+});
 
 
 
