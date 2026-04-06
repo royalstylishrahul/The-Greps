@@ -15,7 +15,19 @@ app.use(cors());
 app.use(express.json());
 
 // ─── MongoDB Connection ────────────────────────────────────────────────────
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/stockalert");
+mongoose.connect(
+process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/The Greps",
+{
+useNewUrlParser:true,
+useUnifiedTopology:true
+}
+)
+.then(()=>{
+console.log("MongoDB Connected");
+})
+.catch((err)=>{
+console.log("MongoDB connection error:",err);
+});
 
 // ─── Mongoose Schemas ──────────────────────────────────────────────────────
 
@@ -56,7 +68,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "stockalert-docs",
+    folder: "The Greps-docs",
     allowed_formats: ["jpg", "jpeg", "png", "pdf", "webp"],
     resource_type: "auto",
   },
@@ -215,4 +227,4 @@ app.get("/api/documents/:storeId", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`StockAlert API running on port ${PORT}`));
+app.listen(PORT, () => console.log(`The Greps API running on port ${PORT}`));

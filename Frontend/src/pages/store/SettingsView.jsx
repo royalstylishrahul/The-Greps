@@ -584,7 +584,7 @@ addToast("Update failed");
               <div style={{fontFamily:"'Sora',sans-serif",fontSize:16,fontWeight:700,color:T.textH,marginBottom:20}}>Billing & Subscription</div>
               <div style={{background:"linear-gradient(135deg,#6366f1,#8b5cf6)",borderRadius:16,padding:"22px 24px",color:"#fff",marginBottom:22}}>
                 <div style={{fontSize:12.5,opacity:.8,marginBottom:4}}>Current Plan</div>
-                <div style={{fontFamily:"'Sora',sans-serif",fontSize:28,fontWeight:700,marginBottom:6}}>StockAlert Pro</div>
+                <div style={{fontFamily:"'Sora',sans-serif",fontSize:28,fontWeight:700,marginBottom:6}}>The Greps Pro</div>
                 <div style={{fontSize:13.5,opacity:.9}}>Unlimited campaigns · 5,000 contacts · 3 stores</div>
                 <div style={{marginTop:14,fontSize:12.5,opacity:.75}}>Next billing: {billing.next} · {billing.amount}/month</div>
               </div>

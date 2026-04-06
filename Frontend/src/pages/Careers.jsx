@@ -191,7 +191,7 @@ function ApplyModal({ role, dept, onClose }) {
                 <input name="email" type="email" value={form.email} onChange={handle} required placeholder="priya@example.com" className={inp} />
               </div>
               <div>
-                <label className="block text-[11.5px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Why StockAlert? <span className="normal-case font-medium text-gray-400">(2–4 lines)</span></label>
+                <label className="block text-[11.5px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Why The Greps? <span className="normal-case font-medium text-gray-400">(2–4 lines)</span></label>
                 <textarea name="why" value={form.why} onChange={handle} rows={3} required placeholder="Tell us what excites you about this role…" className={inp + " resize-none leading-relaxed"} />
               </div>
               <button type="submit" disabled={loading}
@@ -488,11 +488,11 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* ── Life at StockAlert photo strip ── */}
+        {/* ── Life at The Greps photo strip ── */}
         <section className="bg-white py-20 px-6 overflow-hidden">
           <div className="max-w-5xl mx-auto">
             <FadeIn className="text-center mb-10">
-              <h2 className="text-[clamp(22px,3vw,32px)] font-black text-gray-900 tracking-tight mb-2">Life at StockAlert</h2>
+              <h2 className="text-[clamp(22px,3vw,32px)] font-black text-gray-900 tracking-tight mb-2">Life at The Greps</h2>
               <p className="text-gray-400 text-sm">Async work, real camaraderie, and the best chai breaks in the game.</p>
             </FadeIn>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
@@ -557,7 +557,7 @@ export default function CareersPage() {
                 <p className="text-gray-500 text-[14px] mb-5 max-w-sm mx-auto leading-relaxed">
                   We're always on the lookout for exceptional people. Send us your CV and tell us how you'd contribute.
                 </p>
-                <a href="mailto:careers@stockalertcrm.com"
+                <a href="mailto:careers@The Grepscrm.com"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-bold text-[14px] rounded-xl px-6 py-3 shadow-md shadow-indigo-200 hover:-translate-y-0.5 hover:shadow-indigo-300 transition-all">
                   Send Open Application <IcoArrow />
                 </a>

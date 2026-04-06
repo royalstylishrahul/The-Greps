@@ -108,7 +108,7 @@ export default function UploadPortal({ mappingId }) {
           <Upload size={28} />
         </div>
         <h1 className="text-2xl font-bold">Document Upload</h1>
-        <p className="mt-2 opacity-80 text-sm">StockAlert Secure Portal</p>
+        <p className="mt-2 opacity-80 text-sm">The Greps Secure Portal</p>
       </div>
 
       {/* Card */}
@@ -207,7 +207,7 @@ export default function UploadPortal({ mappingId }) {
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-4">
-          🔒 Secure upload · Powered by StockAlert
+          🔒 Secure upload · Powered by The Greps
         </p>
       </div>
     </div>

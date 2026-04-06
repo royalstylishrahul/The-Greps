@@ -4,13 +4,10 @@ const client = SibApiV3Sdk.ApiClient.instance;
 
 const apiKey = client.authentications["api-key"];
 
-apiKey.apiKey = process.env.BREVO_API_KEY;
-
 const tranEmailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
-
 const sendOTPEmail = async (email, otp) => {
-
+apiKey.apiKey = process.env.BREVO_API_KEY;
 try{
 
 console.log("Sending OTP to:",email);
@@ -18,17 +15,17 @@ console.log("Sending OTP to:",email);
 await tranEmailApi.sendTransacEmail({
 
 sender:{
-email:"royalstylishrahul@gmail.com",
-name:"SetuSync"
+ email:"royalstylishrahul@gmail.com",
+ name:"The Greps"
 },
 
 to:[
 {
-email:email
+ email:email
 }
 ],
 
-subject:"Your SetuSync OTP",
+subject:"Your The Greps OTP",
 
 htmlContent:`
 
@@ -45,7 +42,7 @@ box-shadow:0 5px 20px rgba(0,0,0,0.08)
 ">
 
 <h2 style="color:#6C63FF">
-SetuSync
+The Greps
 </h2>
 
 <p style="color:#666">

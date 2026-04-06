@@ -34,7 +34,7 @@ function NavBar() {
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-lg shadow-md">📲</div>
           <span className="font-extrabold text-[17px] text-gray-900 tracking-tight">
-            StockAlert <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
+            The Greps <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
@@ -88,16 +88,16 @@ const INFO_ITEMS = [
   {
     icon: <IconMail />,
     label: "Chat with Sales",
-    value: "sales@stockalertcrm.com",
+    value: "sales@The Grepscrm.com",
     sub: "We reply within 2 hours",
-    href: "mailto:sales@stockalertcrm.com",
+    href: "mailto:sales@The Grepscrm.com",
   },
   {
     icon: <IconHeadset />,
     label: "Support",
-    value: "support@stockalertcrm.com",
+    value: "support@The Grepscrm.com",
     sub: "Available Mon–Sat, 9am–7pm IST",
-    href: "mailto:support@stockalertcrm.com",
+    href: "mailto:support@The Grepscrm.com",
   },
   {
     icon: <IconPin />,

@@ -86,7 +86,7 @@ const ILLUS = [
       <rect x="452" y="78" width="100" height="10" rx="5" fill="white" fillOpacity="0.25"/>
       <rect x="452" y="95" width="72" height="7" rx="3" fill="white" fillOpacity="0.16"/>
       {[0,1,2].map(i=><rect key={i} x={356} y={172+i*16} width={208} height={7} rx={3} fill="white" fillOpacity={0.14}/>)}
-      <text x="320" y="310" textAnchor="middle" fontSize="13" fill="white" fillOpacity="0.4" fontFamily="sans-serif">StockAlert CRM · Resources</text>
+      <text x="320" y="310" textAnchor="middle" fontSize="13" fill="white" fillOpacity="0.4" fontFamily="sans-serif">The Greps CRM · Resources</text>
     </svg>
   ),
   // Card 1 – WhatsApp
@@ -238,7 +238,7 @@ const POSTS = [
   {
     cat: "Growth",
     title: "From 0 to 1,000 Customers: A Small Retailer's CRM Journey",
-    desc: "Real story of a Jaipur kirana store that built a loyal customer base in under 6 months using StockAlert.",
+    desc: "Real story of a Jaipur kirana store that built a loyal customer base in under 6 months using The Greps.",
     author: "Rohan Das",
     date: "May 22, 2025",
     read: "5 min read",
@@ -271,7 +271,7 @@ function NavBar() {
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-lg shadow-md">📲</div>
           <span className="font-extrabold text-[17px] text-gray-900 tracking-tight">
-            StockAlert <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
+            The Greps <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
@@ -433,7 +433,7 @@ export default function BlogPage() {
             <FadeIn>
               <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-5 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                StockAlert CRM Blog
+                The Greps CRM Blog
               </div>
             </FadeIn>
             <FadeIn delay={60}>

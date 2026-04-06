@@ -154,7 +154,7 @@
               </svg>
             </div>
             <span className="text-slate-800 font-semibold text-xl tracking-tight">
-              StockAlert <span className="text-indigo-600">CRM</span>
+              The Greps <span className="text-indigo-600">CRM</span>
             </span>
           </div>
           <span
@@ -212,7 +212,7 @@
                   onChange={(e) => {setEmail(e.target.value);setError("");}}
                   onFocus={() => setFocused("email")}
                   onBlur={() => setFocused(null)}
-                  placeholder="admin@stockalert.io"
+                  placeholder="admin@The Greps.io"
                   className={`${inputBase} ${focused === "email" ? inputFocused : inputIdle}`}
                   required
                   autoComplete="email"
@@ -348,7 +348,7 @@
         </div>
 
         <p className="mt-4 text-xs text-slate-300">
-          © {new Date().getFullYear()} StockAlert CRM. All rights reserved.
+          © {new Date().getFullYear()} The Greps CRM. All rights reserved.
         </p>
       </div>
     );

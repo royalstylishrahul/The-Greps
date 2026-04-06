@@ -75,7 +75,7 @@ function Footer() {
               <span
                 style={{ fontWeight: 800, fontSize: 17, color: "#fff", letterSpacing: "-0.04em" }}
               >
-                StockAlert <span style={{ ...gradientText }}>CRM</span>
+                The Greps <span style={{ ...gradientText }}>CRM</span>
               </span>
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.7, maxWidth: 260 }}>
@@ -160,7 +160,7 @@ navigate("/"+link.page);
           }}
         >
           <span style={{ fontSize: 13 }}>
-            © 2025 StockAlert CRM. All rights reserved.
+            © 2025 The Greps. All rights reserved.
           </span>
           <span style={{ fontSize: 13 }}>Made with ❤️ for Indian retail</span>
         </div>

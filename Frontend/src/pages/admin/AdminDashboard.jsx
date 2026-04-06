@@ -70,7 +70,7 @@ function AppProvider({ children }) {
     wapiKey: "WA-sk-prod-xK9mN2pQ7rL4vJ",
     stripeKey: "sk_live_51Hb3K2...",
     razorpayKey: "rzp_live_KmN9pQ7rL4vJ",
-    webhookUrl: "https://api.stockalert.io/webhooks",
+    webhookUrl: "https://api.The Greps.io/webhooks",
   });
 
   const addToast = useCallback((msg, type = "success") => {
@@ -273,7 +273,7 @@ function AdminLayout({ children }) {
               fontSize: "18px", flexShrink: 0,
             }}>🔔</div>
             <div>
-              <div style={{ color: "#fff", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.3px" }}>StockAlert</div>
+              <div style={{ color: "#fff", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.3px" }}>The Greps</div>
               <div style={{ color: "#94a3b8", fontSize: "11px" }}>CRM Platform</div>
             </div>
           </div>
@@ -323,7 +323,7 @@ function AdminLayout({ children }) {
             }}>SA</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ color: "#e2e8f0", fontSize: "12.5px", fontWeight: 600 }}>Super Admin</div>
-              <div style={{ color: "#64748b", fontSize: "11px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>admin@stockalert.io</div>
+              <div style={{ color: "#64748b", fontSize: "11px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>admin@The Greps.io</div>
             </div>
           </div>
         </div>

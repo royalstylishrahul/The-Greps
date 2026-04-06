@@ -164,7 +164,7 @@ function NavBar() {
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-lg shadow-md">📲</div>
           <span className="font-extrabold text-[17px] text-gray-900 tracking-tight">
-            StockAlert <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
+            The Greps <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
@@ -210,7 +210,7 @@ function Hero() {
         </FadeIn>
         <FadeIn delay={150}>
           <p className="text-[clamp(16px,2vw,20px)] text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
-            We believe every corner store deserves enterprise-grade marketing tools. StockAlert CRM was built to give India's retail owners the power of WhatsApp campaigns — without the complexity.
+            We believe every corner store deserves enterprise-grade marketing tools. The Greps was built to give India's retail owners the power of WhatsApp campaigns — without the complexity.
           </p>
         </FadeIn>
         <FadeIn delay={220}>
@@ -255,7 +255,7 @@ function OurStory() {
               Arjun teamed up with Priya, a seasoned engineer, and together they built a simple prototype over a weekend. Within a month, 20 local stores were using it. Within six months, the waitlist had hundreds of stores.
             </p>
             <p>
-              Today, StockAlert CRM helps <strong className="text-gray-700">500+ stores</strong> across India manage their customers, showcase products, and send targeted WhatsApp campaigns — in just minutes.
+              Today, The Greps helps <strong className="text-gray-700">500+ stores</strong> across India manage their customers, showcase products, and send targeted WhatsApp campaigns — in just minutes.
             </p>
           </div>
           <div className="mt-8 flex items-center gap-3">
@@ -395,7 +395,7 @@ function CTA() {
               Ready to grow your store?
             </h2>
             <p className="text-indigo-200 text-[15px] leading-relaxed mb-9 max-w-lg mx-auto">
-              Join 500+ retail stores across India already sending smarter WhatsApp campaigns and driving real orders with StockAlert CRM.
+              Join 500+ retail stores across India already sending smarter WhatsApp campaigns and driving real orders with The Greps.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button className="bg-white text-indigo-600 font-black text-[15px] rounded-xl px-8 py-3.5 shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition-all duration-150 tracking-tight">

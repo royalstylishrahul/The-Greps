@@ -1,3 +1,4 @@
+const adminRoutes = require("./routes/admin.routes");
 const serverless = require("serverless-http");
 if(process.env.NODE_ENV !== "production"){
   require("dotenv").config();
@@ -14,7 +15,8 @@ const app = express();
 app.use(cors({
  origin:[
   "http://localhost:5173",
-  "https://main.d1jv16iunam0qq.amplifyapp.com"
+  "https://main.d1jv16iunam0qq.amplifyapp.com",
+  /^https:\/\/.*\.amplifyapp\.com$/
  ],
  credentials:true,
  methods:["GET","POST","PUT","DELETE","OPTIONS"],
@@ -22,6 +24,27 @@ app.use(cors({
 }));
 
 app.options('*', cors());
+app.use((req,res,next)=>{
+
+ res.header("Access-Control-Allow-Origin","*");
+
+ res.header(
+  "Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept, Authorization, storeId"
+ );
+
+ res.header(
+  "Access-Control-Allow-Methods",
+  "GET,POST,PUT,DELETE,OPTIONS"
+ );
+
+ if(req.method==="OPTIONS"){
+  return res.sendStatus(200);
+ }
+
+ next();
+
+});
 
 // Body parser
 app.use(express.json({limit:"10mb"}));
@@ -100,6 +123,7 @@ app.use("/api/campaigns",campaignRoutes);
 app.use("/api/whatsapp",whatsappRoutes);
 
 app.use("/api/store",storeRoutes);
+app.use("/api/admin",adminRoutes);
 
 
 // 404
@@ -162,9 +186,14 @@ if(process.env.IS_OFFLINE){
 
 const PORT=5001;
 
+connectDatabase().then(()=>{
+
 app.listen(PORT,()=>{
 
 console.log(`Server running on ${PORT}`);
+console.log("✅ MongoDB Connected");
+
+});
 
 });
 

@@ -1,4 +1,4 @@
-# StockAlert — Custom Field Builder
+# The Greps — Custom Field Builder
 
 A full-stack, multi-tenant custom field system with QR-powered document uploads.
 
@@ -7,7 +7,7 @@ A full-stack, multi-tenant custom field system with QR-powered document uploads.
 ## Project Structure
 
 ```
-stockalert-custom-fields/
+The Greps-custom-fields/
 ├── backend/
 │   ├── server.js          # Express API + Mongoose models
 │   ├── package.json
@@ -128,7 +128,7 @@ Every API route is scoped to `storeId`. Field lookups, updates, and deletes all 
 
 ---
 
-## Integrating with Existing StockAlert Auth
+## Integrating with Existing The Greps Auth
 
 Replace the hardcoded `STORE_ID` constant in `CustomFieldBuilder.jsx` with your auth context:
 

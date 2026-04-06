@@ -33,7 +33,7 @@ try{
 
 const {email,password}=req.body;
 
-if(email!==process.env.ADMIN_EMAIL){
+if(email.trim().toLowerCase() !== process.env.ADMIN_EMAIL.trim().toLowerCase()){
 
 return res.status(401).json({
 success:false,
@@ -69,18 +69,22 @@ lastSent:Date.now()
 };
 
 // SEND EMAIL
-await sendOTPEmail(
-email,
-otp
-);
+try{
+ await sendOTPEmail(email,otp);
+}catch(e){
+ console.log("Email failed, OTP:",otp);
+}
 
 return res.json({
 success:true,
 message:"OTP sent"
 });
 
+
 }
 catch(err){
+
+console.log("ADMIN LOGIN ERROR:",err);
 
 return res.status(500).json({
 success:false,
@@ -89,7 +93,11 @@ message:"Admin login failed"
 
 }
 
-};
+
+
+}
+
+
 
 exports.verifyAdminOTP=async(req,res)=>{
 

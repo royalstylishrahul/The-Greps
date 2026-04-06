@@ -494,7 +494,7 @@ mode==="signup"
               <BellIcon />
             </div>
             <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 700, fontSize: "1rem" }} className="text-slate-800">
-              StockAlert <span className="gradient-text">CRM</span>
+              The Greps <span className="gradient-text">CRM</span>
             </span>
           </div>
 
@@ -516,7 +516,7 @@ mode === "login"
 mode === "login"
 ? "Sign in to manage your store campaigns"
 : mode === "signup"
-? "Join 12,000+ store owners using StockAlert"
+? "Join 12,000+ store owners using The Greps"
 : "Enter your email to reset password"
 }
               </p>
@@ -742,51 +742,47 @@ whatsapp:""
                 )}
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">
-                    {mode === "login" ? "Email / WhatsApp Number" : "Email Address"}
-                  </label>
-                  <input
-className={inputClass("email")}
-placeholder={mode === "login" ? "email@store.com or +91 98765..." : "email@store.com"}
-value={form.email}
+  <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">
+    {mode === "login" ? "Email / WhatsApp Number" : "Email Address"}
+  </label>
 
-disabled={otpSent}
+  <input
+    className={inputClass("email")}
+    placeholder={mode === "login" ? "email@store.com or +91 98765..." : "email@store.com"}
+    value={form.email}
+    disabled={otpSent}
+    onChange={(e)=>{
+      if(otpSent) return;
 
-onChange={(e)=>{
+      setForm({
+        ...form,
+        email:e.target.value
+      });
 
-if(otpSent) return;
+      const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-setForm({
-...form,
-email:e.target.value
-});
+      if(errors.email && emailRegex.test(e.target.value)){
+        setErrors({
+          ...errors,
+          email:""
+        });
+      }
+    }}
+    onFocus={() => setFocused("email")}
+    onBlur={() => setFocused("")}
+    style={{
+      background: otpSent ? "#f8fafc" : "",
+      cursor: otpSent ? "not-allowed" : ""
+    }}
+  />
 
-const emailRegex =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if(errors.email && emailRegex.test(e.target.value)){
-
-setErrors({
-...errors,
-email:""
-});
-
-}
-
-}}
-
-onFocus={() => setFocused("email")}
-onBlur={() => setFocused("")}
-
-style={{
-background: otpSent ? "#f8fafc" : "",
-cursor: otpSent ? "not-allowed" : ""
-}}
-/>
-                    onFocus={() => setFocused("email")}
-                    onBlur={() => setFocused("")}
-                  {errors.email && <p className="text-red-500 text-xs mt-1.5">{errors.email}</p>}
-                </div>
+  {errors.email && (
+    <p className="text-red-500 text-xs mt-1.5">
+      {errors.email}
+    </p>
+  )}
+</div>
 
                 {mode !== "forgot" && (
 
@@ -1034,7 +1030,7 @@ mode === "signup"
 
           {/* Footer */}
           <p className="text-center text-xs text-slate-400 mt-8">
-            © 2025 StockAlert CRM · Trusted by 12,000+ stores
+            © 2025 The Greps CRM · Trusted by 12,000+ stores
           </p>
         </div>
 
@@ -1080,7 +1076,7 @@ mode === "signup"
                     {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
                   </div>
                   <p className="text-white/85 text-xs leading-relaxed mb-2">
-                    "StockAlert helped me double my repeat customers! My Diwali campaign got 80% open rate."
+                    "The Greps helped me double my repeat customers! My Diwali campaign got 80% open rate."
                   </p>
                   <div className="flex items-center gap-2">
                     <span className="text-white/60 text-xs font-medium">Rahul Sharma</span>

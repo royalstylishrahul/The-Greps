@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/thegreps-logo.png";
 
 const gradientText = {
   background: "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
@@ -74,26 +74,23 @@ const Header = () => {
   style={{ display: "flex", alignItems: "center", gap: 10, cursor:"pointer" }}
   onClick={()=>navigate("/")}
 >
-          <img
-  src={logo}
-  alt="Dukan *Prachar*"
-  style={{
-    width: 36,
-    height: 36,
-    objectFit:"contain"
-  }}
+
+          <div 
+ style={{ display:"flex", alignItems:"center", cursor:"pointer" }}
+ onClick={()=>navigate("/")}
+>
+
+<img
+ src={logo}
+ alt="The Greps"
+ style={{
+  height:65,
+  width:"auto",
+  objectFit:"contain"
+ }}
 />
-          <span
-            style={{
-              fontWeight: 800,
-              fontSize: 18,
-              color: "#111827",
-              letterSpacing: "-0.04em",
-            }}
-          >
-            DUKAN{" "}
-            <span style={{ ...gradientText, fontWeight: 800 }}>PRACHAR</span>
-          </span>
+
+</div>
         </div>
 
         {/* Desktop Nav */}

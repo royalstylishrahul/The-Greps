@@ -623,7 +623,7 @@ function Sidebar({ activeTab, setActiveTab, storeProfile, customers = [], campai
       <div style={{marginBottom:26,paddingLeft:4}}>
         <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:7}}>
           <div style={{width:33,height:33,borderRadius:10,background:T.grad,display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,boxShadow:"0 3px 10px rgba(99,102,241,0.3)"}}>📲</div>
-          <span className="logo-text">StockAlert</span>
+          <span className="logo-text">The Greps</span>
         </div>
         <span style={{fontSize:10.5,fontWeight:700,background:"#f0f0ff",color:T.accent,borderRadius:8,padding:"2px 9px",letterSpacing:".04em"}}>STORE ACCESS</span>
       </div>

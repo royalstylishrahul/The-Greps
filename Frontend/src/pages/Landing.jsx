@@ -214,7 +214,7 @@ function DashboardMockup() {
             color: "#888",
           }}
         >
-          app.stockalertcrm.com
+          app.The Grepscrm.com
         </div>
       </div>
 
@@ -660,7 +660,7 @@ function FeaturesSection() {
         </div>
         <h2 style={sectionTitle}>Everything your store needs</h2>
         <p style={sectionSub}>
-          From managing customers to launching campaigns — StockAlert CRM puts
+          From managing customers to launching campaigns — The Greps CRM puts
           the power of enterprise marketing in your hands.
         </p>
         <div
@@ -902,7 +902,7 @@ function DashboardPreview() {
                 color: "#888",
               }}
             >
-              app.stockalertcrm.com/dashboard
+              app.The Grepscrm.com/dashboard
             </div>
           </div>
           <div style={{ display: "flex", height: 400 }}>
@@ -917,7 +917,7 @@ function DashboardPreview() {
             >
               <div style={{ padding: "0 12px 14px", marginBottom: 8, borderBottom: "1px solid #2a2850" }}>
                 <div style={{ fontSize: 11, color: "#6366f1", fontWeight: 700, letterSpacing: "0.06em" }}>
-                  STOCKALERT CRM
+                  The Greps CRM
                 </div>
                 <div style={{ fontSize: 10, color: "#666", marginTop: 2 }}>
                   Sharma Grocery Store
@@ -1311,7 +1311,7 @@ return (
             lineHeight: 1.6,
           }}
         >
-          Join 500+ retail stores already using StockAlert CRM to send smarter
+          Join 500+ retail stores already using The Greps CRM to send smarter
           WhatsApp campaigns and boost sales.
         </p>
         <button

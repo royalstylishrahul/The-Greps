@@ -9,7 +9,7 @@ const DOCS = {
     title: "Privacy Policy",
     updated: "June 14, 2025",
     effective: "July 1, 2025",
-    intro: "At StockAlert CRM, we take your privacy seriously. This policy explains what data we collect, why we collect it, and how we protect it.",
+    intro: "At The Greps CRM, we take your privacy seriously. This policy explains what data we collect, why we collect it, and how we protect it.",
     sections: [
       {
         id: "data-collection",
@@ -35,7 +35,7 @@ const DOCS = {
           },
           {
             type: "p",
-            text: "When you use StockAlert CRM, we may automatically collect certain technical information:",
+            text: "When you use The Greps CRM, we may automatically collect certain technical information:",
           },
           {
             type: "ul",
@@ -74,7 +74,7 @@ const DOCS = {
           },
           {
             type: "p",
-            text: "StockAlert CRM does not sell, rent, or trade your personal information or your customers' data to third parties for marketing purposes. Your data is yours — we are simply the custodian.",
+            text: "The Greps CRM does not sell, rent, or trade your personal information or your customers' data to third parties for marketing purposes. Your data is yours — we are simply the custodian.",
           },
         ],
       },
@@ -141,7 +141,7 @@ const DOCS = {
           },
           {
             type: "p",
-            text: "To exercise any of these rights, contact us at privacy@stockalertcrm.com. We will respond within 30 days.",
+            text: "To exercise any of these rights, contact us at privacy@The Grepscrm.com. We will respond within 30 days.",
           },
         ],
       },
@@ -200,9 +200,9 @@ const DOCS = {
           {
             type: "ul",
             items: [
-              "Email: privacy@stockalertcrm.com",
-              "Address: StockAlert Technologies Pvt. Ltd., Connaught Place, New Delhi — 110001",
-              "Grievance Officer: Arjun Mehta (grievance@stockalertcrm.com)",
+              "Email: privacy@The Grepscrm.com",
+              "Address: The Greps Technologies Pvt. Ltd., Connaught Place, New Delhi — 110001",
+              "Grievance Officer: Arjun Mehta (grievance@The Grepscrm.com)",
             ],
           },
         ],
@@ -214,20 +214,20 @@ const DOCS = {
     title: "Terms of Service",
     updated: "June 14, 2025",
     effective: "July 1, 2025",
-    intro: "These Terms of Service govern your use of StockAlert CRM. By accessing or using our services, you agree to be bound by these terms.",
+    intro: "These Terms of Service govern your use of The Greps CRM. By accessing or using our services, you agree to be bound by these terms.",
     sections: [
       {
         id: "acceptance",
         heading: "1. Acceptance of Terms",
         content: [
-          { type: "p", text: "By creating an account or using any StockAlert CRM service, you confirm that you are at least 18 years old, that you have read and understood these Terms, and that you agree to be legally bound by them. If you are using StockAlert on behalf of a business, you represent that you have authority to bind that business." },
+          { type: "p", text: "By creating an account or using any The Greps CRM service, you confirm that you are at least 18 years old, that you have read and understood these Terms, and that you agree to be legally bound by them. If you are using The Greps on behalf of a business, you represent that you have authority to bind that business." },
         ],
       },
       {
         id: "service-description",
         heading: "2. Service Description",
         content: [
-          { type: "p", text: "StockAlert CRM provides a cloud-based customer relationship management platform with WhatsApp marketing capabilities designed for retail businesses. Features include:" },
+          { type: "p", text: "The Greps CRM provides a cloud-based customer relationship management platform with WhatsApp marketing capabilities designed for retail businesses. Features include:" },
           { type: "ul", items: ["Customer database management", "Product catalogue creation", "WhatsApp campaign broadcasting", "Analytics and reporting dashboards", "Multi-store management"] },
           { type: "p", text: "We reserve the right to modify, suspend, or discontinue any part of the service at any time, with reasonable notice where feasible." },
         ],
@@ -237,7 +237,7 @@ const DOCS = {
         heading: "3. Accounts & Responsibilities",
         content: [
           { type: "h3", text: "Account Security" },
-          { type: "p", text: "You are responsible for maintaining the confidentiality of your account credentials. You must notify us immediately at security@stockalertcrm.com if you suspect unauthorised access." },
+          { type: "p", text: "You are responsible for maintaining the confidentiality of your account credentials. You must notify us immediately at security@The Grepscrm.com if you suspect unauthorised access." },
           { type: "h3", text: "Accurate Information" },
           { type: "p", text: "You agree to provide accurate, complete, and up-to-date information when creating your account and to keep this information current." },
         ],
@@ -246,7 +246,7 @@ const DOCS = {
         id: "acceptable-use",
         heading: "4. Acceptable Use",
         content: [
-          { type: "p", text: "You agree NOT to use StockAlert CRM to:" },
+          { type: "p", text: "You agree NOT to use The Greps CRM to:" },
           { type: "ul", items: ["Send unsolicited messages (spam) to individuals who have not opted in", "Violate WhatsApp Business Policy or any applicable law", "Upload malicious code, viruses, or disruptive content", "Attempt to gain unauthorised access to our systems", "Resell or sublicense the service without written permission", "Use the platform for activities that are illegal under Indian law"] },
         ],
       },
@@ -262,14 +262,14 @@ const DOCS = {
         id: "intellectual-property",
         heading: "6. Intellectual Property",
         content: [
-          { type: "p", text: "StockAlert CRM and its original content, features, and functionality are and will remain the exclusive property of StockAlert Technologies Pvt. Ltd. You may not copy, modify, or distribute our platform without express written consent. Your content (customer data, product listings) remains your property." },
+          { type: "p", text: "The Greps CRM and its original content, features, and functionality are and will remain the exclusive property of The Greps Technologies Pvt. Ltd. You may not copy, modify, or distribute our platform without express written consent. Your content (customer data, product listings) remains your property." },
         ],
       },
       {
         id: "limitation",
         heading: "7. Limitation of Liability",
         content: [
-          { type: "p", text: "To the maximum extent permitted by law, StockAlert CRM shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of revenue, data, or business opportunities. Our total aggregate liability shall not exceed the fees paid by you in the 3 months preceding the claim." },
+          { type: "p", text: "To the maximum extent permitted by law, The Greps CRM shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of revenue, data, or business opportunities. Our total aggregate liability shall not exceed the fees paid by you in the 3 months preceding the claim." },
         ],
       },
       {
@@ -286,7 +286,7 @@ const DOCS = {
     title: "Cookie Policy",
     updated: "June 14, 2025",
     effective: "July 1, 2025",
-    intro: "This Cookie Policy explains how StockAlert CRM uses cookies and similar tracking technologies when you visit our website or use our product.",
+    intro: "This Cookie Policy explains how The Greps CRM uses cookies and similar tracking technologies when you visit our website or use our product.",
     sections: [
       {
         id: "what-are-cookies",
@@ -396,7 +396,7 @@ function NavBar() {
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-[9px] bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-base shadow-md">📲</div>
           <span className="font-extrabold text-[16px] text-gray-900 tracking-tight">
-            StockAlert <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
+            The Greps <span className="bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-transparent">CRM</span>
           </span>
         </div>
         <a href="#" className="text-sm font-bold text-white bg-gradient-to-r from-indigo-500 to-violet-600 rounded-[9px] px-4 py-2 shadow-md shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all">
@@ -570,8 +570,8 @@ export default function LegalPage() {
                 {/* Contact quick link */}
                 <div className="mx-4 mb-4 mt-2 rounded-xl bg-indigo-50 border border-indigo-100 p-3.5 text-center">
                   <p className="text-[11.5px] text-indigo-500 font-semibold mb-1">Questions about this policy?</p>
-                  <a href="mailto:legal@stockalertcrm.com" className="text-[12px] font-black text-indigo-700 hover:underline">
-                    legal@stockalertcrm.com
+                  <a href="mailto:legal@The Grepscrm.com" className="text-[12px] font-black text-indigo-700 hover:underline">
+                    legal@The Grepscrm.com
                   </a>
                 </div>
               </div>
@@ -641,7 +641,7 @@ export default function LegalPage() {
                 <div>
                   <p className="font-bold text-slate-800 text-[14px] mb-0.5">This document was last reviewed by our legal team</p>
                   <p className="text-slate-500 text-[13px]">
-                    {doc.updated} · Questions? <a href="mailto:legal@stockalertcrm.com" className="text-indigo-600 font-semibold hover:underline">legal@stockalertcrm.com</a>
+                    {doc.updated} · Questions? <a href="mailto:legal@The Grepscrm.com" className="text-indigo-600 font-semibold hover:underline">legal@The Grepscrm.com</a>
                   </p>
                 </div>
                 <button
