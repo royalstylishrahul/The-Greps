@@ -128,12 +128,22 @@ message:err.message
 });
 
 });
-const handler = serverless(app,{
-  basePath:'/greps-backend',
-  request:function(req,event){
-    req.url=req.url.replace('/greps-backend','');
-  }
-});
+const handler = serverless(app);
+
+module.exports.handler = async(event,context)=>{
+
+ context.callbackWaitsForEmptyEventLoop=false;
+
+ await connectDatabase();
+
+ // remove API Gateway prefix
+ if(event.path){
+   event.path = event.path.replace('/greps-backend','');
+ }
+
+ return handler(event,context);
+
+};
 
 
 
