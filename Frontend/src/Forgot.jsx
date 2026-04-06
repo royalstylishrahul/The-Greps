@@ -1,4 +1,4 @@
-import API from "../services/api";
+import API from "./services/api";
 import { useState } from "react";
 
 export default function Forgot({ setPage }) {
