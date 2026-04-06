@@ -99,7 +99,7 @@ app.use("/api/campaigns",campaignRoutes);
 
 app.use("/api/whatsapp",whatsappRoutes);
 
-app.use("/store",storeRoutes);
+app.use("/api/store",storeRoutes);
 
 
 // 404
@@ -129,7 +129,10 @@ message:err.message
 
 });
 const handler = serverless(app,{
-  basePath:'/greps-backend'
+  basePath:'/greps-backend',
+  request:function(req,event){
+    req.url=req.url.replace('/greps-backend','');
+  }
 });
 
 
