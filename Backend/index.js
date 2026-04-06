@@ -29,7 +29,6 @@ extended:true
 }));
 
 
-// DB cache
 let isConnected=false;
 
 const connectDatabase = async ()=>{
@@ -50,6 +49,12 @@ app.use("/uploads",express.static("uploads"));
 
 }
 
+app.use((req,res,next)=>{
+  if(req.url.startsWith("/default/")){
+    req.url=req.url.replace("/default","");
+  }
+  next();
+});
 
 // Routes
 const authRoutes = require("./routes/auth.routes");
@@ -127,6 +132,7 @@ message:err.message
 });
 
 });
+const handler = serverless(app);
 
 
 
@@ -137,8 +143,6 @@ module.exports.handler = async(event,context)=>{
 context.callbackWaitsForEmptyEventLoop=false;
 
 await connectDatabase();
-
-const handler=serverless(app);
 
 return handler(event,context);
 
