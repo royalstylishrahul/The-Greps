@@ -7,55 +7,31 @@ on:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
 
     - uses: actions/checkout@v4
 
-
     - uses: aws-actions/configure-aws-credentials@v4
-
       with:
-
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-
         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-
         aws-region: ap-south-1
-
 
     - uses: aws-actions/amazon-ecr-login@v2
 
-
     - name: Build Docker image
-
-      run: |
-
-        docker build -t greps-backend ./Backend
-
+      run: docker build -t greps-backend ./Backend
 
     - name: Tag image
-
-      run: |
-
-        docker tag greps-backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
-
+      run: docker tag greps-backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
 
     - name: Push image
-
-      run: |
-
-        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
-
+      run: docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
 
     - name: Update Lambda
-
       run: |
-
         aws lambda update-function-code \
-
-        --function-name greps-backend \
-
-        --image-uri ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
+          --function-name greps-backend \
+          --image-uri ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/greps-backend:latest
