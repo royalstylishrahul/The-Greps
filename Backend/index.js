@@ -10,6 +10,11 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
+
+app.options("*", (req,res)=>{
+res.status(200).end();
+});
+
 const BASE_PATH="/greps-backend";
 
 
