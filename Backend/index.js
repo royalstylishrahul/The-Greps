@@ -10,12 +10,12 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
+const BASE_PATH="/greps-backend";
 
 
 // CORS
 app.use(cors({
- origin:["http://localhost:5173","https://main.d1jv16iunam0qq.amplifyapp.com"],
- credentials:true,
+ origin:"*",
  methods:["GET","POST","PUT","DELETE","OPTIONS"],
  allowedHeaders:["Content-Type","Authorization","storeId"]
 }));
@@ -63,7 +63,7 @@ const storeRoutes = require("./routes/store.routes");
 
 
 // Root
-app.get("/",(req,res)=>{
+app.get(BASE_PATH,(req,res)=>{
 
  res.json({
   status:"ok",
@@ -74,7 +74,7 @@ app.get("/",(req,res)=>{
 
 
 // Health
-app.get("/api/health",(req,res)=>{
+app.get(BASE_PATH+"/api/health",(req,res)=>{
 
  res.json({status:"ok"});
 
@@ -82,13 +82,13 @@ app.get("/api/health",(req,res)=>{
 
 
 // API routes
-app.use("/api/auth",authRoutes);
-app.use("/api/customers",customerRoutes);
-app.use("/api/products",productRoutes);
-app.use("/api/campaigns",campaignRoutes);
-app.use("/api/whatsapp",whatsappRoutes);
-app.use("/api/store",storeRoutes);
-app.use("/api/admin",adminRoutes);
+app.use(BASE_PATH+"/api/auth",authRoutes);
+app.use(BASE_PATH+"/api/customers",customerRoutes);
+app.use(BASE_PATH+"/api/products",productRoutes);
+app.use(BASE_PATH+"/api/campaigns",campaignRoutes);
+app.use(BASE_PATH+"/api/whatsapp",whatsappRoutes);
+app.use(BASE_PATH+"/api/store",storeRoutes);
+app.use(BASE_PATH+"/api/admin",adminRoutes);
 
 
 // 404

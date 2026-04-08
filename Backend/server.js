@@ -1,164 +1,114 @@
 require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const compression = require("compression");
+const serverless = require("serverless-http");
 
-const express=require("express");
-const cors=require("cors");
-const rateLimit=require("express-rate-limit");
-const helmet=require("helmet");
-const morgan=require("morgan");
-const compression=require("compression");
-const serverless=require("serverless-http");
+// DB & Routes Import
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth.routes");
+const customerRoutes = require("./routes/customer.routes");
+const broadcastRoutes = require("./routes/broadcast.routes");
+const campaignRoutes = require("./routes/campaign.routes");
+const otpRoutes = require("./routes/otp.routes");
+const whatsappRoutes = require("./routes/whatsapp.routes");
+const adminRoutes = require("./routes/admin.routes");
+const errorHandler = require("./middleware/error.middleware");
 
-// DB
-const connectDB=require("./config/db");
+const app = express();
 
-// ROUTES
-const authRoutes=require("./routes/auth.routes");
-const customerRoutes=require("./routes/customer.routes");
-const broadcastRoutes=require("./routes/broadcast.routes");
-const campaignRoutes=require("./routes/campaign.routes");
-const otpRoutes=require("./routes/otp.routes");
-const whatsappRoutes=require("./routes/whatsapp.routes");
-const adminRoutes=require("./routes/admin.routes");
-
-
-// ERROR HANDLER
-const errorHandler=require("./middleware/error.middleware");
-
-const app=express();
-
-
-// SECURITY
-app.use(helmet());
-
-const allowedOrigins = [
-process.env.FRONTEND_URL,
-process.env.AMPLIFY_URL,
-"http://localhost:5173",
-"http://127.0.0.1:5173"
-];
-
-// IMPORTANT Lambda CORS fix
-
-app.use(cors({
-origin:[
-process.env.FRONTEND_URL,
-process.env.AMPLIFY_URL,
-"http://localhost:5173",
-"http://127.0.0.1:5173",
-"https://main.d1jv16iunam0qq.amplifyapp.com"
-],
-credentials:true,
-methods:["GET","POST","PUT","DELETE","OPTIONS"],
-allowedHeaders:[
-"Content-Type",
-"Authorization",
-"storeId",
-"storeid"
-]
-}));
-
-app.options("*", cors());
-
+// 1. SECURITY & OPTIMIZATION MIDDLEWARES
+app.use(helmet()); // Helmet ko start mein rakhein
 app.use(compression());
 app.use(morgan("dev"));
 
+// 2. CORS CONFIGURATION
+const allowedOrigins = [
+    "https://main.d1jv16iunam0qq.amplifyapp.com",
+    "http://localhost:5173"
+];
 
-// BODY
-app.use(express.json({limit:"10mb"}));
-
-app.use(express.urlencoded({
-extended:true,
-limit:"10mb"
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "storeId", "storeid"],
+    optionsSuccessStatus: 200
 }));
 
+// 3. BODY PARSERS
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// RATE LIMIT
-const limiter=rateLimit({
+// 4. RATE LIMITER
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 300,
+    message: {
+        success: false,
+        message: "Too many requests, please try again later."
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use("/api/", limiter); // Sirf API routes par limit lagayein
 
-windowMs:15*60*1000,
+// 5. ROUTES
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/otp", otpRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/broadcast", broadcastRoutes);
+app.use("/api/campaigns", campaignRoutes);
+app.use("/api/whatsapp", whatsappRoutes);
 
-max:300,
-
-message:{
-success:false,
-message:"Too many requests"
-}
-
+// Health Check
+app.get("/", (req, res) => {
+    res.status(200).json({ status: "API Running", timestamp: new Date() });
 });
 
-app.use((req,res,next)=>{
- if(req.method==="OPTIONS"){
-  return res.sendStatus(200);
- }
- next();
+// 6. 404 & ERROR HANDLING
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "Route not found"
+    });
 });
 
-app.use(limiter);
-
-
-// ROUTES
-app.use("/api/auth",authRoutes);
-
-app.use("/api/admin",adminRoutes);
-
-app.use("/api/otp",otpRoutes);
-
-app.use("/api/customers",customerRoutes);
-
-app.use("/api/broadcast",broadcastRoutes);
-
-app.use("/api/campaigns",campaignRoutes);
-
-app.use("/api/whatsapp",whatsappRoutes);
-
-
-// HEALTH
-app.get("/",(req,res)=>{
-
-res.send("API Running");
-
-});
-
-
-// 404
-app.use((req,res)=>{
-
-res.status(404).json({
-
-success:false,
-
-message:"Route not found"
-
-});
-
-});
-
-
-// ERROR
 app.use(errorHandler);
 
+// 7. DB CONNECTION & LAMBDA HANDLER
+let isDBConnected = false;
 
+const handler = serverless(app);
 
+module.exports.handler = async (event, context) => {
+    // Lambda ko event loop khali hone ka wait nahi karne dena chahiye
+    context.callbackWaitsForEmptyEventLoop = false;
 
-// DB caching (important Lambda optimization)
-let isDBConnected=false;
+    if (!isDBConnected) {
+        try {
+            await connectDB();
+            isDBConnected = true;
+            console.log("Database connected successfully");
+        } catch (error) {
+            console.error("DB Connection Error:", error);
+            // Agar DB connect nahi hua toh request fail kar dein
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ message: "Database connection failed" })
+            };
+        }
+    }
 
-
-// Lambda handler
-module.exports.handler=async(event,context)=>{
-
-context.callbackWaitsForEmptyEventLoop=false;
-
-if(!isDBConnected){
-
-await connectDB();
-
-isDBConnected=true;
-
-}
-
-const handler=serverless(app);
-
-return handler(event,context);
-
+    return await handler(event, context);
 };
