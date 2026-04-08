@@ -1,34 +1,23 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
-
 const API = axios.create({
-  baseURL: baseURL.replace(/\/$/, "")
+  baseURL: import.meta.env.VITE_API_URL 
+    ? import.meta.env.VITE_API_URL
+    : "http://localhost:5001/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-API.interceptors.request.use((req)=>{
+// attach token automatically
+API.interceptors.request.use((req) => {
+  const token = localStorage.getItem("token");
 
-  const token = localStorage.getItem("token")?.trim();
-  const storeId = localStorage.getItem("storeId");
-
-  if(token){
+  if (token) {
     req.headers.Authorization = `Bearer ${token}`;
   }
 
-  if(storeId){
-    req.headers.storeId = storeId;
-  }
-
   return req;
-
 });
-
-export const getCustomers = ()=>{
-  return API.get("/customers");
-};
-
-export const getCampaigns = ()=>{
- return API.get("/campaigns");
-};
 
 export default API;

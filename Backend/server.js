@@ -38,21 +38,22 @@ process.env.AMPLIFY_URL,
 ];
 
 // IMPORTANT Lambda CORS fix
-app.use((req,res,next)=>{
-res.header("Access-Control-Allow-Origin","*");
-res.header("Access-Control-Allow-Headers","*");
-res.header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,OPTIONS");
-next();
-});
 
 app.use(cors({
-origin:true,
+origin:[
+process.env.FRONTEND_URL,
+process.env.AMPLIFY_URL,
+"http://localhost:5173",
+"http://127.0.0.1:5173",
+"https://main.d1jv16iunam0qq.amplifyapp.com"
+],
 credentials:true,
 methods:["GET","POST","PUT","DELETE","OPTIONS"],
 allowedHeaders:[
 "Content-Type",
 "Authorization",
-"storeId"
+"storeId",
+"storeid"
 ]
 }));
 
