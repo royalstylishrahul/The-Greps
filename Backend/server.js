@@ -57,6 +57,7 @@ allowedHeaders:[
 ]
 }));
 
+app.options("*", cors());
 
 app.use(compression());
 app.use(morgan("dev"));
