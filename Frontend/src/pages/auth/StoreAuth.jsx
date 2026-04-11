@@ -385,9 +385,9 @@ password: form.password
 };
 
 const endpoint =
-mode === "signup"
-? "/auth/signup"
-: "/auth/login";
+  mode === "signup"
+    ? "/auth/signup"
+    : "/auth/login";
 
 const response =
 await API.post(endpoint,data);

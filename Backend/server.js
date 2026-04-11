@@ -21,7 +21,11 @@ const errorHandler = require("./middleware/error.middleware");
 const app = express();
 
 // 1. SECURITY & OPTIMIZATION MIDDLEWARES
-app.use(helmet()); // Helmet ko start mein rakhein
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(compression());
 app.use(morgan("dev"));
 
@@ -32,6 +36,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
+    
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
@@ -44,7 +49,6 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization", "storeId", "storeid"],
     optionsSuccessStatus: 200
 }));
-
 // 3. BODY PARSERS
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -63,13 +67,15 @@ const limiter = rateLimit({
 app.use("/api/", limiter); // Sirf API routes par limit lagayein
 
 // 5. ROUTES
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/otp", otpRoutes);
-app.use("/api/customers", customerRoutes);
-app.use("/api/broadcast", broadcastRoutes);
-app.use("/api/campaigns", campaignRoutes);
-app.use("/api/whatsapp", whatsappRoutes);
+const BASE_PATH = "/greps-backend";
+
+app.use(BASE_PATH + "/api/auth", authRoutes);
+app.use(BASE_PATH + "/api/admin", adminRoutes);
+app.use(BASE_PATH + "/api/otp", otpRoutes);
+app.use(BASE_PATH + "/api/customers", customerRoutes);
+app.use(BASE_PATH + "/api/broadcast", broadcastRoutes);
+app.use(BASE_PATH + "/api/campaigns", campaignRoutes);
+app.use(BASE_PATH + "/api/whatsapp", whatsappRoutes);   
 
 // Health Check
 app.get("/", (req, res) => {
@@ -92,6 +98,19 @@ let isDBConnected = false;
 const handler = serverless(app);
 
 module.exports.handler = async (event, context) => {
+    // ✅ HANDLE PREFLIGHT (CORS) BEFORE ANYTHING ELSE
+if (event.httpMethod === "OPTIONS") {
+    return {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": event.headers.origin || "http://localhost:5173",
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Headers": "Content-Type, Authorization, storeId, storeid",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        body: ""
+    };
+}
     // Lambda ko event loop khali hone ka wait nahi karne dena chahiye
     context.callbackWaitsForEmptyEventLoop = false;
 
@@ -110,5 +129,25 @@ module.exports.handler = async (event, context) => {
         }
     }
 
-    return await handler(event, context);
+    const response = await handler(event, context);
+
+return {
+    ...response,
+    headers: {
+        ...response.headers,
+        "Access-Control-Allow-Origin": event.headers.origin || "http://localhost:5173",
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, storeId, storeid",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+    }
 };
+};
+// ✅ LOCAL SERVER SUPPORT (IMPORTANT)
+
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 5001;
+
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running locally on http://localhost:${PORT}`);
+    });
+}
